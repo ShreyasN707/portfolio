@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ShreyasN707/Portfolio/static/css/main.fd7d54e1.css",
+    "main.js": "/ShreyasN707/Portfolio/static/js/main.e00827af.js",
+    "static/media/montserrat-latin-ext-900-normal.woff": "/ShreyasN707/Portfolio/static/media/montserrat-latin-ext-900-normal.8eb4d84d166a8cca83cd.woff",
+    "static/media/montserrat-latin-ext-900-normal.woff2": "/ShreyasN707/Portfolio/static/media/montserrat-latin-ext-900-normal.b2c311a339fae64d069b.woff2",
+    "static/media/montserrat-latin-900-normal.woff": "/ShreyasN707/Portfolio/static/media/montserrat-latin-900-normal.e36bb480114b3a4d7c1c.woff",
+    "static/media/montserrat-latin-900-normal.woff2": "/ShreyasN707/Portfolio/static/media/montserrat-latin-900-normal.08278aed8cd1cfd4fd17.woff2",
+    "static/media/montserrat-cyrillic-ext-900-normal.woff2": "/ShreyasN707/Portfolio/static/media/montserrat-cyrillic-ext-900-normal.8b04c8eb427497e8cee3.woff2",
+    "static/media/montserrat-cyrillic-ext-900-normal.woff": "/ShreyasN707/Portfolio/static/media/montserrat-cyrillic-ext-900-normal.2f4f3fad030354644125.woff",
+    "static/media/montserrat-cyrillic-900-normal.woff2": "/ShreyasN707/Portfolio/static/media/montserrat-cyrillic-900-normal.ce4cd92c2f5ad1890528.woff2",
+    "static/media/montserrat-cyrillic-900-normal.woff": "/ShreyasN707/Portfolio/static/media/montserrat-cyrillic-900-normal.f4a46459d0e588bc6e94.woff",
+    "static/media/montserrat-vietnamese-900-normal.woff2": "/ShreyasN707/Portfolio/static/media/montserrat-vietnamese-900-normal.f84924366ffa3111903a.woff2",
+    "static/media/montserrat-vietnamese-900-normal.woff": "/ShreyasN707/Portfolio/static/media/montserrat-vietnamese-900-normal.cf7262d6e85b1dfae8b7.woff",
+    "index.html": "/ShreyasN707/Portfolio/index.html",
+    "main.fd7d54e1.css.map": "/ShreyasN707/Portfolio/static/css/main.fd7d54e1.css.map",
+    "main.e00827af.js.map": "/ShreyasN707/Portfolio/static/js/main.e00827af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd7d54e1.css",
+    "static/js/main.e00827af.js"
+  ]
+}
