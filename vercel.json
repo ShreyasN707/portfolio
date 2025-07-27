@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd portfolio && npm install --legacy-peer-deps && npm run build",
+  "buildCommand": "chmod +x build.sh && ./build.sh",
   "outputDirectory": "portfolio/build",
-  "installCommand": "cd portfolio && npm install --legacy-peer-deps"
+  "installCommand": "echo 'Installation handled by build script'"
 } 
