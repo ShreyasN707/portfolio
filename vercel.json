@@ -1,7 +1,6 @@
 {
-  "buildCommand": "npm install --legacy-peer-deps && npm run build",
-  "outputDirectory": "build",
-  "installCommand": "npm install --legacy-peer-deps",
-  "framework": "create-react-app",
-  "rootDirectory": "portfolio"
+  "buildCommand": "cd portfolio && npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": "portfolio/build",
+  "installCommand": "cd portfolio && npm install --legacy-peer-deps",
+  "framework": "create-react-app"
 } 
