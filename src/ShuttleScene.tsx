@@ -37,9 +37,26 @@ function printSceneGraph(object: any, depth = 0) {
   }
 }
 
-const MachineModel = React.memo(({ onClick }: { onClick: () => void }) => {
+const MachineModel = React.memo(({ onClick, onLoad, onError }: { 
+  onClick: () => void;
+  onLoad?: () => void;
+  onError?: () => void;
+}) => {
   const { scene } = useGLTF('/machine.glb');
   const ref = useRef<THREE.Object3D>(null);
+  
+  React.useEffect(() => {
+    if (scene && onLoad) {
+      onLoad();
+    }
+  }, [scene, onLoad]);
+  
+  React.useEffect(() => {
+    if (ref.current && onLoad) {
+      onLoad();
+    }
+  }, [onLoad]);
+  
   return (
     <primitive ref={ref} object={scene} scale={1.2} position={[0, 0, 0]} onClick={onClick} />
   );
@@ -1039,6 +1056,8 @@ const ShuttleScene = () => {
   const [hidePopup, setHidePopup] = useState(false);
   const [flickerOn, setFlickerOn] = useState(false);
   const [blackout, setBlackout] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [modelError, setModelError] = useState(false);
   // Only lock controls when focused
   const controlsEnabled = !focus;
   const handleFocus = React.useCallback(() => {
@@ -1086,6 +1105,17 @@ const ShuttleScene = () => {
       return () => clearTimeout(timeout);
     }
   }, [showCli]);
+
+  // Add timeout for model loading
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!modelLoaded && !modelError) {
+        setModelError(true);
+      }
+    }, 30000); // 30 second timeout
+    
+    return () => clearTimeout(timeout);
+  }, [modelLoaded, modelError]);
 
   // Generate random strips for the effect
   const renderBlackStrips = useCallback(() => {
@@ -1142,6 +1172,50 @@ const ShuttleScene = () => {
         <PortfolioMain />
       ) : (
         <div style={{ width: '100vw', height: '100vh', background: '#f9f7f1', position: 'relative' }}>
+          {/* Loading screen */}
+          {!modelLoaded && !modelError && (
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: '#f9f7f1',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+              color: '#333',
+              fontSize: '1.2rem',
+              fontFamily: 'monospace'
+            }}>
+              Loading 3D Models...
+            </div>
+          )}
+          
+          {/* Error screen */}
+          {modelError && (
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: '#f9f7f1',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1000,
+              color: '#ff3333',
+              fontSize: '1.2rem',
+              fontFamily: 'monospace',
+              textAlign: 'center',
+              padding: '2rem'
+            }}>
+              Error loading 3D models. Please refresh the page.
+            </div>
+          )}
+          
           {(!focus) && (
             <TopTransitionText>Click the reactor to activate Portfolio</TopTransitionText>
           )}
@@ -1163,7 +1237,11 @@ const ShuttleScene = () => {
             </mesh>
             <Suspense fallback={null}>
               <CirclingDrone />
-              <MachineModel onClick={handleFocus} />
+              <MachineModel 
+                onClick={handleFocus} 
+                onLoad={() => setModelLoaded(true)}
+                onError={() => setModelError(true)}
+              />
               <pointLight position={[0, 2, 2]} intensity={2} color={'#fff'} />
             </Suspense>
             <CameraFocus focus={focus} />
